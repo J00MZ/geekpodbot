@@ -78,7 +78,7 @@ def main():
     application = Application.builder().token(token=TELEGRAM_TOKEN).build()
     
     application.add_handler(CommandHandler('start', start))
-    application.add_handler(CommandHandler('search', search_podcast))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, search_podcast))  # Handle text messages
     application.add_handler(CallbackQueryHandler(button))
     application.add_handler(CallbackQueryHandler(send_episode))
     
